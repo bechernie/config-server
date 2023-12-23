@@ -33,3 +33,15 @@ dependencyManagement {
 tasks.named('test') {
     useJUnitPlatform()
 }
+
+bootBuildImage {
+    imageName = "${project.name}"
+
+    docker {
+        publishRegistry {
+            username = project.findProperty("registryUsername")
+            password = project.findProperty("registryPassword")
+            url = project.findProperty("registryUrl")
+        }
+    }
+}
